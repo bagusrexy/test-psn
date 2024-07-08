@@ -35,3 +35,8 @@ class db_customer_query(object):
     def get_customer_by_id(customer_id):
         customer = Customer.query.filter(Customer.customer_id == customer_id).first()
         return customer
+    
+    @staticmethod
+    def get_customer_by_name(customer_name):
+        customer = Customer.query.filter(Customer.name == customer_name).first()
+        return customer

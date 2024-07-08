@@ -2,7 +2,7 @@ from models.address import Address, db_address_query
 from models.customers import db_customer_query
 from models.db import db
 from utils.response import create_response, Response
-from validation.schemas import RequestCustomerSchema
+from validation.schemas import RequestAddressSchema
 from datetime import datetime
 
 class AddressService(object):
@@ -13,13 +13,13 @@ class AddressService(object):
     
     def add_address(self):
         try:
-            validated_payload = RequestCustomerSchema()
+            validated_payload = RequestAddressSchema()
             validated_payload.load(self.payload)
             customer_id = self.params.get('customer_id')
             customer = db_customer_query.get_customer_by_id(customer_id)
             if not customer:
                 response_template = Response.ERROR_PROCESS.copy()
-                response_template['response_message'] = f"Customer with ID {customer_id} not found"
+                response_template['response_message'] = f"Address with ID {customer_id} not found"
                 return create_response(response_template), 404
             new_address = Address(
                 address=self.payload.get('address'),
@@ -45,7 +45,7 @@ class AddressService(object):
             address = db_address_query.get_address_by_id(id)
             if not address:
                 response_template = Response.ERROR_PROCESS.copy()
-                response_template['response_message'] = f"Customer with ID {address} not found"
+                response_template['response_message'] = f"Address with ID {address} not found"
                 return create_response(response_template), 404
 
             for key, value in self.payload.items():
@@ -67,7 +67,7 @@ class AddressService(object):
             address = db_address_query.get_address_by_id(id)
             if not address:
                 response_template = Response.ERROR_PROCESS.copy()
-                response_template['response_message'] = f"Customer with ID {id} not found"
+                response_template['response_message'] = f"Address with ID {id} not found"
                 return create_response(response_template), 404
             
             db.session.delete(address)

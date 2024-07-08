@@ -15,7 +15,7 @@ class RequestCustomerSchema(Schema):
         if existing_customer:
             raise ValidationError('phone_number already exists.')
         
-class RequestCustomerSchema(Schema):
+class RequestAddressSchema(Schema):
     address = fields.Str(required=True)
     district = fields.Str(required=True)
     city = fields.Str(required=True)

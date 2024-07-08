@@ -17,7 +17,7 @@ def add_customer():
     log_request_end(endpoint, response.json['response_message'])
     return response, status_code
 
-@address_bp.route('/customer/<int:customer_id>', methods=['PATCH'])
+@address_bp.route('/address/<int:customer_id>', methods=['PATCH'])
 def update_customer(customer_id):
     endpoint = request.path
     payload = request.json if request.json else {}
@@ -31,7 +31,7 @@ def update_customer(customer_id):
     
     return response, status_code
 
-@address_bp.route('/customer/<int:customer_id>', methods=['DELETE'])
+@address_bp.route('/address/<int:customer_id>', methods=['DELETE'])
 def delete_customer(customer_id):
     endpoint = request.path
     log_request_start(endpoint)

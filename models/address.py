@@ -18,7 +18,7 @@ class db_address_query(object):
     
     @staticmethod
     def get_address_by_id(value):
-        address = Address.query.filter(Address.id == value).all()
+        address = Address.query.filter(Address.id == value).first()
         return address
     
     @staticmethod

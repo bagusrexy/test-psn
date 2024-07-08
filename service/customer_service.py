@@ -140,7 +140,9 @@ class CustomerService(object):
                 "phone_number": customer.phone_number,
                 "image": customer.image,
                 "email": customer.email,
-                "address": address_list
+                "address": address_list,
+                "created_at": data.created_at.isoformat(),
+                "updated_at": data.updated_at.isoformat()
             }
             
             return create_response(Response.SUCCESS_PROCESS, data=response), 200
