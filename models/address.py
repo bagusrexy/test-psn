@@ -25,3 +25,8 @@ class db_address_query(object):
     def get_address_by_customer_id(customer_id):
         address = Address.query.filter(Address.customer_id == customer_id).all()
         return address
+    
+    @staticmethod
+    def get_one_address_by_customer_id(customer_id):
+        address = Address.query.filter(Address.customer_id == customer_id).first()
+        return address
